@@ -4,6 +4,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @Data
+@Builder
 public class FoodaMediaTypeReq {
     private Long typeId;
     private String title;
