@@ -4,6 +4,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @Data
+@Builder
 public class FoodaMediaStoreReq {
     private Long storeMediaId;
     private FoodaMediaStoreInfoReq store;

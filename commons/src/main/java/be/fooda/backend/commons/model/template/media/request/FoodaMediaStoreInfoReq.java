@@ -6,6 +6,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @Data
+@Builder
 public class FoodaMediaStoreInfoReq {
     private Long storeId;
     private String name;
