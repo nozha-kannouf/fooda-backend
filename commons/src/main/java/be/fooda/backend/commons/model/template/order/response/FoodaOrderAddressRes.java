@@ -6,6 +6,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @Data
+@Builder
 public class FoodaOrderAddressRes {
     private String number;
     private String street;

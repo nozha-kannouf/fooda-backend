@@ -6,6 +6,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @Data
+@Builder
 public class FoodaOrderPaymentReq {
     private String title;
     private String method;

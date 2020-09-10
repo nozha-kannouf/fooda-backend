@@ -9,6 +9,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @Data
+@Builder
 public class FoodaSubOrderRes {
     private FoodaOrderStoreRes store;
     private FoodaOrderStatusRes status;

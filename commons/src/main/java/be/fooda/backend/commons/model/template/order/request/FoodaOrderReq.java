@@ -6,6 +6,7 @@ import java.util.List;
 
 import lombok.*;
 
+@NoArgsConstructor
 @Data
 @Builder
 public class FoodaOrderReq {

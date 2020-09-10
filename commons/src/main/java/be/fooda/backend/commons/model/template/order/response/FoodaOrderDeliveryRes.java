@@ -6,6 +6,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @Data
+@Builder
 public class FoodaOrderDeliveryRes {
     private Boolean isAddressSameAsBilling;
     private FoodaOrderContactRes contact;

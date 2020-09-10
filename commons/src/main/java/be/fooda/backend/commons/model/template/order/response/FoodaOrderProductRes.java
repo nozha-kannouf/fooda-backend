@@ -8,6 +8,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @Data
+@Builder
 public class FoodaOrderProductRes {
     private Long productId;
     private String name;
