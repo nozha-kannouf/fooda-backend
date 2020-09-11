@@ -1,7 +1,7 @@
 package be.fooda.backend.commons.service.mapper;
 
 import be.fooda.backend.commons.model.template.product.request.*;
-import be.fooda.backend.commons.model.template.product.response.FoodaProductRes;
+import be.fooda.backend.commons.model.template.product.response.*;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -74,14 +74,79 @@ public class FoodaProductHttpMapper implements FoodaHttpMapper<FoodaProductReq, 
                         .expiry(pri.getExpiry())
                         .isDefault(pri.getIsDefault())
                         .priceId(pri.getPriceId())
+                        .title(res.getType().getTitle())
                         .build())
                 .collect(Collectors.toList());
     }
 
     @Override
-    public FoodaProductRes requestToResponse(final FoodaProductReq foodaProductReq) {
+    public FoodaProductRes requestToResponse(final FoodaProductReq productReq) {
         final FoodaProductRes res = new FoodaProductRes();
-        // TODO setters ..
+            res.setName(productReq.getName());
+            res.setIsFeatured(false);
+            res.setProductId(productReq.getProductId());
+            res.setCategories(productReq.getCategories());
+            res.setDescription(productReq.getDescription());
+            res.setImages(imageAsRes(productReq));
+            res.setOrderLimit(productReq.getOrderLimit());
+            res.setPrices(priceAsRes(productReq));
+            res.setStockQuantity(productReq.getStockQuantity());
+            res.setStore(storeAsRes(productReq));
+            res.setTags(productReq.getTags());
+            res.setTaxes(taxAsRes(productReq));
+            res.setType(typeAsRes(productReq));
+
         return res;
+    }
+
+    private FoodaProductTypeRes typeAsRes(FoodaProductReq productReq) {
+        FoodaProductTypeRes typeRes=new FoodaProductTypeRes();
+        typeRes.setTypeId(productReq.getType().getTypeId());
+        typeRes.setName(productReq.getName());
+        typeRes.setTitle(productReq.getType().getTitle());
+        return typeRes;
+    }
+
+    private List<FoodaProductTaxesItemRes> taxAsRes(FoodaProductReq productReq) {
+        return productReq.getTaxes().stream()
+                .map(tax->FoodaProductTaxesItemRes.builder()
+                        .taxId(tax.getTaxId())
+                        .title(tax.getTitle())
+                        .percentage(tax.getPercentage())
+                        .isDefault(false)
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    private FoodaProductStoreRes storeAsRes(FoodaProductReq productReq) {
+         FoodaProductStoreRes storeRes=new FoodaProductStoreRes();
+        storeRes.setStoreId(productReq.getStore().getStoreId());
+        storeRes.setName(productReq.getName());
+        storeRes.setLogo(productReq.getStore().getLogo());
+        return storeRes;
+    }
+
+    private List<FoodaProductPricesItemRes> priceAsRes(FoodaProductReq productReq) {
+        return productReq.getPrices().stream()
+                .map(price->FoodaProductPricesItemRes.builder()
+                        .amount(price.getAmount())
+                        .currency(price.getCurrency())
+                        .expiry(price.getExpiry())
+                        .priceId(price.getPriceId())
+                        .isDefault(false)
+                        .title(price.getTitle())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    private List<FoodaProductImagesItemRes> imageAsRes(FoodaProductReq productReq) {
+        return productReq.getImages().stream()
+                .map(image->FoodaProductImagesItemRes.builder()
+                        .isDefault(false)
+                        .mediaId(image.getMediaId())
+                        .url(image.getUrl())
+                        .type(typeAsRes(productReq))
+                        .build())
+                .collect(Collectors.toList());
     }
 }
