@@ -4,6 +4,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @Data
+@Builder
 public class FoodaMediaAppSourceReq {
     private Long appSourceId;
     private String title;

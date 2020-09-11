@@ -35,10 +35,6 @@ public class FoodaMediaProductDtoMapper implements FoodaDtoMapper<FoodaMediaProd
                 .build();
     }
 
-
-
-
-
     @Override
     public FoodaMediaProductDto responseToDto(FoodaMediaProductRes foodaMediaProductRes) {
         return FoodaMediaProductDto.builder()
@@ -77,7 +73,6 @@ public class FoodaMediaProductDtoMapper implements FoodaDtoMapper<FoodaMediaProd
     private FoodaMediaProductInfoReq product(FoodaMediaProductDto dto) {
         return FoodaMediaProductInfoReq.builder()
                 .productId(dto.getProductKey().getProductId())
-                //.name(dto.)
                 .build();
     }
 
@@ -86,14 +81,12 @@ public class FoodaMediaProductDtoMapper implements FoodaDtoMapper<FoodaMediaProd
                 .store(storeInfo(dto))
                 .url(dto.getUrl())
                 .type(type(dto))
-                //.storeMediaId(dto.getProductMediaId())
                 .build();
     }
 
     private FoodaMediaStoreInfoReq storeInfo(FoodaMediaProductDto dto) {
         return FoodaMediaStoreInfoReq.builder()
                 .storeId(dto.getProductKey().getStoreId())
-                //.name(dto
                 .build();
     }
 
@@ -135,7 +128,6 @@ public class FoodaMediaProductDtoMapper implements FoodaDtoMapper<FoodaMediaProd
     private FoodaMediaStoreInfoRes mediaStoreInfoRes(FoodaMediaProductDto dto) {
         final FoodaMediaStoreInfoRes mediaStoreInfoRes=new FoodaMediaStoreInfoRes();
         mediaStoreInfoRes.setStoreId(dto.getProductKey().getStoreId());
-        // mediaStoreInfoRes.setName(dto.get)
         return mediaStoreInfoRes;
     }
 

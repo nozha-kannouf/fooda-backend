@@ -9,6 +9,7 @@ import be.fooda.backend.commons.service.mapper.FoodaDtoMapper;
 import be.fooda.backend.product.model.dto.*;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +53,9 @@ public class FoodaProductDtoMapper implements FoodaDtoMapper<FoodaProductDto, Fo
     }
 
     private List<FoodaProductPricesItemReq> pricesAsReq(final FoodaProductDto dto) {
-        return Collections.singletonList(FoodaProductPricesItemReq.builder().priceId(dto.getPrice().getProductPriceId()).amount(dto.getPrice().getAmount()).build());
+        return Collections.singletonList(FoodaProductPricesItemReq.builder()
+                .priceId(dto.getPrice().getProductPriceId())
+                .amount(dto.getPrice().getAmount()).build());
     }
 
     private List<FoodaProductPricesItemRes> pricesAsRes(final FoodaProductDto dto) {
@@ -87,7 +90,6 @@ public class FoodaProductDtoMapper implements FoodaDtoMapper<FoodaProductDto, Fo
         return FoodaProductStoreReq.builder()
                 .storeId(dto.getKey().getStoreId())
                 .name(dto.getName())
-                .storeId(dto.getKey().getStoreId())
                 .build();
     }
 
@@ -110,6 +112,7 @@ public class FoodaProductDtoMapper implements FoodaDtoMapper<FoodaProductDto, Fo
     private FoodaProductStoreRes store(FoodaProductDto dto) {
         FoodaProductStoreRes resStore = new FoodaProductStoreRes();
         resStore.setStoreId(dto.getKey().getStoreId());
+        resStore.setName(dto.getName());
         return resStore;
     }
 
@@ -127,16 +130,85 @@ public class FoodaProductDtoMapper implements FoodaDtoMapper<FoodaProductDto, Fo
     }
 
     @Override
-    public FoodaProductDto responseToDto(final FoodaProductRes foodaProductRes) {
-        return null;
+    public FoodaProductDto responseToDto(final FoodaProductRes res) {
+        return FoodaProductDto.builder()
+                .categories(categoriesAsDto(res))
+                .description(res.getDescription())
+                .ingredients(ingredientsAsDto(res))
+                .isFeatured(false)
+                .key(keyAsDto(res))
+                .name(res.getName())
+                .price(priceAsDto(res))
+                .tags(tagAsDto(res))
+                .tax(taxAsDto(res))
+                .type(typeAsDto(res))
+                .build();
+    }
+
+    private FoodaProductTypeDto typeAsDto(FoodaProductRes res) {
+        return FoodaProductTypeDto.builder()
+                .title(res.getType().getTitle())
+                .typeId(res.getType().getTypeId())
+                .build();
+    }
+
+    private FoodaProductTaxDto taxAsDto(FoodaProductRes res) {
+        return FoodaProductTaxDto.builder()
+                .productKey(keyAsDto(res))
+                .title(res.getType().getTitle())
+                .build();
+    }
+
+    private List<FoodaProductTagDto> tagAsDto(FoodaProductRes res) {
+        return Arrays.asList(FoodaProductTagDto.builder()
+                .build());
+    }
+
+    private FoodaProductPriceDto priceAsDto(FoodaProductRes res) {
+        return FoodaProductPriceDto.builder()
+                .title(res.getType().getTitle())
+                .productKey(keyAsDto(res))
+                .build();
+    }
+
+    private FoodaProductKeyDto keyAsDto(FoodaProductRes res) {
+        return FoodaProductKeyDto.builder()
+                .productId(res.getProductId())
+                .storeId(res.getStore().getStoreId())
+                .build();
+    }
+
+    private List<FoodaProductIngredientDto> ingredientsAsDto(FoodaProductRes res) {
+        return Arrays.asList(FoodaProductIngredientDto.builder()
+                .name(res.getName())
+                .parent(ingredientAsDto(res))
+                .build());
+    }
+
+    private FoodaProductIngredientDto ingredientAsDto(FoodaProductRes res) {
+        return FoodaProductIngredientDto.builder()
+                .name(res.getName())
+                .parent(ingredientAsDto(res))
+                .build();
+    }
+
+    private List<FoodaProductCategoryDto> categoriesAsDto(FoodaProductRes res) {
+        return Arrays.asList(FoodaProductCategoryDto.builder()
+                .id(res.getProductId())
+                .title(res.getType().getTitle())
+                .build());
     }
 
     private FoodaProductKeyDto productKey(final FoodaProductReq req) {
-        return FoodaProductKeyDto.builder().storeId(req.getStore().getStoreId()).productId(req.getProductId()).build();
+        return FoodaProductKeyDto.builder()
+                .storeId(req.getStore().getStoreId())
+                .productId(req.getProductId()).build();
     }
 
     private List<FoodaProductCategoryDto> categories(final FoodaProductReq req) {
-        return req.getCategories().stream().map(r -> FoodaProductCategoryDto.builder().title(r).build()).collect(Collectors.toList());
+        return Arrays.asList(FoodaProductCategoryDto.builder()
+                .title(req.getType().getTitle())
+                .build());
     }
 
     private Optional<FoodaProductPriceDto> price(final FoodaProductReq req) {
