@@ -4,8 +4,8 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
+@Builder(toBuilder = true)
 public class FoodaUserReq {
-    public final String login;
-    public final String password;
+    private final String login;
+    private final String password;
 }

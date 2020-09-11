@@ -1,5 +1,6 @@
 package be.fooda.backend.commons.model.template.user.response;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,10 +8,11 @@ import javax.persistence.OneToMany;
 import java.util.Set;
 
 @Data
+@Builder(toBuilder = true)
 @NoArgsConstructor
 public class FoodaUserRes {
-    public Long userId;
-    public String login;
+    private Long userId;
+    private String login;
     @OneToMany
-    public Set<FoodaUserRoleRes> roles;
+    private Set<FoodaUserRoleRes> roles;
 }
