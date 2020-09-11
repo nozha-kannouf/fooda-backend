@@ -5,12 +5,26 @@ import be.fooda.backend.commons.model.template.basket.response.FoodaBasketOrderR
 
 public class FoodaBasketOrderHttpMapper implements FoodaHttpMapper<FoodaBasketOrderReq, FoodaBasketOrderRes> {
     @Override
-    public FoodaBasketOrderReq responseToRequest(FoodaBasketOrderRes foodaBasketOrderRes) {
-        return null;
+    public FoodaBasketOrderReq responseToRequest(FoodaBasketOrderRes res) {
+
+        return FoodaBasketOrderReq.builder()
+                .note(res.getNote())
+                .requiredTime(res.getRequiredTime())
+                .session(res.getSession())
+                .storeId(res.getStoreId())
+                .userId(res.getUserId())
+                .build();
     }
 
     @Override
-    public FoodaBasketOrderRes requestToResponse(FoodaBasketOrderReq foodaBasketOrderReq) {
-        return null;
+    public FoodaBasketOrderRes requestToResponse(FoodaBasketOrderReq req) {
+
+        return FoodaBasketOrderRes.builder()
+                .note(req.getNote())
+                .requiredTime(req.getRequiredTime())
+                .session(req.getSession())
+                .storeId(req.getStoreId())
+                .userId(req.getUserId())
+                .build();
     }
 }
