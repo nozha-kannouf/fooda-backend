@@ -2,7 +2,6 @@ package be.fooda.backend.commons.service.mapper;
 
 import be.fooda.backend.commons.model.template.order.request.*;
 import be.fooda.backend.commons.model.template.order.response.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
