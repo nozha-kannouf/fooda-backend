@@ -8,6 +8,7 @@ import lombok.*;
 @Data
 @Builder
 public class FoodaOrderAddressRes {
+    //TODO add Id
     private String number;
     private String street;
     private String municipality;

@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @EqualsAndHashCode(callSuper = true)
@@ -18,5 +19,6 @@ public class FoodaOrderStatusDto extends FoodaAbstractDto {
     @Id
     private Long statusId;
     private String title;
+    @OneToOne
     private FoodaOrderStatusDto parent;
 }

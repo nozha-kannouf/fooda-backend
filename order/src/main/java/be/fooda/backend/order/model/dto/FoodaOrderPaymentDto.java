@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "ORDER_PAYMENT")
 public class FoodaOrderPaymentDto extends FoodaAbstractDto{
+    // TODO Id orderPaymentId
     private Long paymentId;
     private BigDecimal amount;
 }
