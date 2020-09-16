@@ -58,9 +58,14 @@ public class FoodaUserDtoMapper implements FoodaDtoMapper<FoodaUserDto, FoodaUse
     }
 
     private Set<FoodaUserRoleRes> dtoRoles(FoodaUserDto dto) {
-        return dto.getRoles().stream().map(role -> FoodaUserRoleRes.builder()
-                // Nothing to fill here
-                .build()
+        return dto.getRoles()
+                .stream()
+                .map(role -> FoodaUserRoleRes.builder()
+                        .title(role.getName())
+                        .hasAccessToDella(role.getHasAccesstoDella())
+                        .hasAccessToFooda(role.getHasAccessToFooda())
+                        .hasAccessToResta(role.getHasAccesstoResta())
+                        .build()
         )
                 .collect(Collectors.toSet());
     }

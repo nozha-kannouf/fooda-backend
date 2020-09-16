@@ -16,5 +16,8 @@ public class FoodaUserRoleDto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userRoleId;
     private String name;
+    private Boolean hasAccessToFooda;
+    private Boolean hasAccesstoDella;
+    private Boolean hasAccesstoResta;
 }
 
