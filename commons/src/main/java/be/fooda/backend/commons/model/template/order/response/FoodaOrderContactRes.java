@@ -1,5 +1,3 @@
-// FoodaOrderContactRes.java
-
 package be.fooda.backend.commons.model.template.order.response;
 
 import lombok.*;
@@ -8,6 +6,7 @@ import lombok.*;
 @Data
 @Builder
 public class FoodaOrderContactRes {
+    private long OrderContactId;
     private String firstName;
     private String familyName;
     private String company;

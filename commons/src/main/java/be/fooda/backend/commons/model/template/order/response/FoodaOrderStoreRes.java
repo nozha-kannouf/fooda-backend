@@ -8,6 +8,7 @@ import lombok.*;
 @Data
 @Builder
 public class FoodaOrderStoreRes {
+    private long orderStoreId;
     private long storeId;
     private String name;
     private String logo;

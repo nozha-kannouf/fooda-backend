@@ -1,5 +1,3 @@
-// OrderedProduct.java
-
 package be.fooda.backend.commons.model.template.order.response;
 
 import java.math.BigDecimal;
@@ -10,6 +8,7 @@ import lombok.*;
 @Data
 @Builder
 public class FoodaOrderProductRes {
+    private long orderProductId;
     private Long productId;
     private String name;
     private Long quantity;

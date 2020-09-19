@@ -1,5 +1,3 @@
-// FoodaOrderVariantRes.java
-
 package be.fooda.backend.commons.model.template.order.request;
 
 import lombok.*;

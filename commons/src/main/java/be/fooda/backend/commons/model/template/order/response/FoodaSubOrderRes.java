@@ -11,6 +11,7 @@ import lombok.*;
 @Data
 @Builder
 public class FoodaSubOrderRes {
+    private long subOrderId;
     private FoodaOrderStoreRes store;
     private FoodaOrderStatusRes status;
     private String note;

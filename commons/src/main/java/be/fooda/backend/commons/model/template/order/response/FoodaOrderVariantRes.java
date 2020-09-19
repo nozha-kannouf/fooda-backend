@@ -8,6 +8,7 @@ import lombok.*;
 @Data
 @Builder
 public class FoodaOrderVariantRes {
+    private long orderVariantId;
     private String title;
     private String price;
 }

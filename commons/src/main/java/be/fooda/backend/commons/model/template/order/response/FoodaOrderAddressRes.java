@@ -1,5 +1,3 @@
-// FoodaOrderAddressRes.java
-
 package be.fooda.backend.commons.model.template.order.response;
 
 import lombok.*;
@@ -8,7 +6,7 @@ import lombok.*;
 @Data
 @Builder
 public class FoodaOrderAddressRes {
-    //TODO add Id
+    private long  orderAdressId;
     private String number;
     private String street;
     private String municipality;
